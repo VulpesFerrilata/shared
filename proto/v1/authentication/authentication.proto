@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option go_package = "proto/v1/authentication";
+
+package authentication;
+
+import "google/protobuf/empty.proto";
+
+service Authentication {
+    rpc CreateUserCredential(CreateUserCredentialRequest) returns (google.protobuf.Empty) {}
+    rpc RemoveUserCredential(RemoveUserCredentialRequest) returns (google.protobuf.Empty) {}
+    rpc Login(LoginRequest) returns (google.protobuf.Empty) {}
+    rpc RevokeToken(RevokeTokenRequest) returns (google.protobuf.Empty) {}
+
+    rpc GetTokenByClaim(GetTokenByClaimRequest) returns (TokenResponse) {}
+    rpc GetClaimByAccessToken(GetClaimByAccessTokenRequest) returns (ClaimResponse) {}
+    rpc GetAccessTokenByRefreshToken(GetAccessTokenByRefreshTokenRequest) returns (TokenResponse) {}
+}
+
+message CreateUserCredentialRequest {
+    string UserCredentialID = 1;
+    string UserID = 2;
+    string Email = 3;
+    string Password = 4;
+}
+
+message RemoveUserCredentialRequest {
+    string UserCredentialID = 1;
+}
+
+message LoginRequest {
+    string ClaimID = 1;
+    string Email = 2;
+    string Password = 3;
+}
+
+message RevokeTokenRequest {
+    string RefreshToken = 1;
+}
+
+message GetTokenByClaimRequest {
+    string ClaimID = 1;
+}
+
+message TokenResponse {
+    string AccessToken = 1;
+    string RefreshToken = 2;
+}
+
+message GetClaimByAccessTokenRequest {
+    string AccessToken = 1;
+}
+
+message ClaimResponse {
+    string ID = 1;
+    string UserID = 2;
+}
+
+message GetAccessTokenByRefreshTokenRequest {
+    string RefreshToken = 1;
+}
+
+
+

@@ -1,0 +1,6 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make: Entering directory 'c:/workspace/Golang/shared'
+protoc --proto_path=. --micro_out=. --go_out=. proto/authentication/v1/authentication.proto
+protoc --proto_path=. --micro_out=. --go_out=. proto/user/v1/user.proto
+make: Leaving directory 'c:/workspace/Golang/shared'
+ 
